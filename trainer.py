@@ -48,7 +48,8 @@ class trainer():
         self._val_acc = []
 
         best_model_wts = deepcopy(model.state_dict())
-        best_acc = 0.0
+        import math
+        best_loss = math.inf
 
         for epoch in range(num_epochs):
             epoch_start = time.time()
@@ -118,8 +119,8 @@ class trainer():
 
                 # deep copy the model
                 if phase == 'val':
-                    if epoch_acc > best_acc:
-                        best_acc = epoch_acc
+                    if epoch_loss < best_loss:
+                        best_loss = epoch_loss
                         best_model_wts = deepcopy(model.state_dict())
                         torch.save(model.state_dict(), f"{self._save_path}/{weights_name}.pth")
                         self.save(weights_name)
@@ -133,8 +134,8 @@ class trainer():
 
         time_elapsed = time.time() - since
         print('Training complete in {:.0f}m {:.0f}s'.format(time_elapsed // 60, time_elapsed % 60))
-        print('Best val Acc: {:4f}'.format(best_acc))
-        self._best_val_acc = best_acc
+        print('Best val Acc: {:4f}'.format(best_loss))
+        self._best_val_acc = best_loss
         # load best model weights
         model.load_state_dict(best_model_wts)
         self.save(weights_name)
