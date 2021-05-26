@@ -38,7 +38,10 @@ class PalmNutriDataset(Dataset):
         except:
             print(self.filenames[idx])
             raise ValueError
-        label = self.n_label[index]
+        if(self.sample_set in ['n17','n33']):
+            label = self.n_label[index]
+        else:
+            raise ValueError(f"Add sampleset 'k' in here first")
         image = Image.open(img_path)
         # label = self.img_labels.iloc[idx, 1]
         if self.transform:
