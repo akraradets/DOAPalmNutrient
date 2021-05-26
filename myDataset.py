@@ -21,7 +21,7 @@ class PalmNutriDataset(Dataset):
         
         if(sample_set not in ['n17','n33','k17','k33']):
             raise ValueError(f"the sample_set '{sample_set}' is not support. Only {['n17','n33','k17','k33']} is valid.")
-        if(sample_set not in ['n17']):
+        if(sample_set not in ['n17','n33']):
             raise ValueError(f"The sample_set '{sample_set}' is not implemented.")
         self.sample_set = sample_set
         self.img_dir = f"{img_dir}/{sample_set}"
