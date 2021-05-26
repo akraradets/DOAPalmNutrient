@@ -37,6 +37,7 @@ class trainer():
 
     def train(self, model, dataloaders, num_epochs=25, weights_name='weight_save', is_inception=False):
         device = self.device
+        model.to(device)
         criterion = self.criterion
         optimizer = self.optimizer
         since = time.time()
@@ -91,7 +92,9 @@ class trainer():
                             loss = loss1 + 0.4*loss2
                         else:
                             outputs = model(inputs)
-                            loss = criterion(outputs, labels)
+                            # print(outputs)
+                            # print(labels.view(-1,1))
+                            loss = criterion(outputs, labels.view(-1,1))
 
                         _, preds = torch.max(outputs, 1)
 

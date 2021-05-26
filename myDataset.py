@@ -1,10 +1,11 @@
 from os import walk
 import pandas as pd
 from torch._C import Value
-from torchvision.io import read_image
+# from torchvision.io import read_image
 from torch.utils.data import Dataset
 import math
 import numpy as np
+from PIL import Image
 
 class PalmNutriDataset(Dataset):
     def __init__(self, ground_truth, img_dir, sample_set, transform=None, target_transform=None):
@@ -32,13 +33,18 @@ class PalmNutriDataset(Dataset):
 
     def __getitem__(self, idx):
         img_path = f"{self.img_dir}/{self.filenames[idx]}"
-        index = np.argwhere(np.array(self.tree_names) == self.filenames[idx].split('_')[0])[0][0]
+        try:
+            index = np.argwhere(np.array(self.tree_names) == self.filenames[idx].split('_')[0])[0][0]
+        except:
+            print(self.filenames[idx])
+            raise ValueError
         label = self.n_label[index]
-        image = read_image(img_path)
+        image = Image.open(img_path)
         # label = self.img_labels.iloc[idx, 1]
         if self.transform:
             image = self.transform(image)
         if self.target_transform:
             label = self.target_transform(label)
-        sample = {"image": image, "label": label}
+        import torch
+        sample = (image,torch.tensor(label,dtype=torch.float32))
         return sample
