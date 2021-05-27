@@ -1,0 +1,87 @@
+<html>
+  <head> </head>
+
+  <body>
+    <!-- Load ONNX.js -->
+    <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <!-- Code that consume ONNX.js -->
+    <script>
+      // create a session
+      var output;
+      var input;
+
+      const session = new onnx.InferenceSession();
+      const loadingModelPromise = session.loadModel("./current_model/n17.onnx")
+      async function pred(){
+        tfdata = imgTransform(document.getElementById('output'));
+        await tfdata.data().then(array => input = new Tensor(array, 'float32', [1,3, 224, 224]));
+        // output = input;
+        // const input = 
+        await loadingModelPromise;
+        const outputMap = await session.run([input]);
+        const outputTensor = outputMap.values().next().value;
+        output = outputTensor.data[0]
+        console.log("N score is " + output)
+        alert("N score is " + output)
+      }
+
+      function imgTransform(img){
+            img = tf.browser.fromPixels(img)
+            img = tf.image.resizeBilinear(img, [224, 224]).div(tf.scalar(255))
+            img = tf.cast(img, dtype = 'float32');
+
+            /*mean of natural image*/
+            // (0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)
+           let meanRgb = {  red : 0.4914,  green: 0.4822,  blue: 0.4465 }
+
+           /* standard deviation of natural image*/
+           let stdRgb = { red: 0.2023,  green: 0.1994,  blue: 0.2010 }
+
+            let indices = [
+                        tf.tensor1d([0], "int32"),
+                        tf.tensor1d([1], "int32"),
+                        tf.tensor1d([2], "int32")
+            ];
+
+           /* sperating tensor channelwise and applyin normalization to each chanel seperately */
+           let centeredRgb = {
+               red: tf.gather(img,indices[0],2)
+                        .sub(tf.scalar(meanRgb.red))
+                        .div(tf.scalar(stdRgb.red))
+                        .reshape([224,224]),
+               
+               green: tf.gather(img,indices[1],2)
+                        .sub(tf.scalar(meanRgb.green))
+                        .div(tf.scalar(stdRgb.green))
+                        .reshape([224,224]),
+               
+               blue: tf.gather(img,indices[2],2)
+                        .sub(tf.scalar(meanRgb.blue))
+                        .div(tf.scalar(stdRgb.blue))
+                        .reshape([224,224]),
+           }
+          
+
+            /* combining seperate normalized channels*/
+            let processedImg = tf.stack([
+                centeredRgb.red, centeredRgb.green, centeredRgb.blue
+            ]).expandDims();
+           return processedImg;
+        }
+    </script>
+<p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+<p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+<p><img id="output" width="256" height="256" /></p>
+
+<script>
+var loadFile = function(event) {
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+  image.height = 224
+  image.width = 224
+};
+</script>      
+<button onclick="pred();">Pred</button>
+  </body>
+</html>
