@@ -134,3 +134,4 @@ current_model_n33/alex_sgd_0.01.pth
 current_model/n17.onnx
 current_model_k17/alex_sgd_0.01.pth
 current_model_k33/alex_sgd_0.01.pth
+current_model*/*.pth

@@ -6,9 +6,10 @@ from torch.utils.data import Dataset
 import math
 import numpy as np
 from PIL import Image
+import pickle
 
 class PalmNutriDataset(Dataset):
-    def __init__(self, ground_truth, img_dir, sample_set, transform=None, target_transform=None):
+    def __init__(self, ground_truth, img_dir, sample_set, filter = True, transform=None, target_transform=None):
         self.transform = transform
         self.target_transform = target_transform
         
@@ -26,7 +27,19 @@ class PalmNutriDataset(Dataset):
         self.sample_set = sample_set
         self.img_dir = f"{img_dir}/{sample_set}"
         _, _, filenames = next(walk(self.img_dir))
-        self.filenames = filenames
+        filt_list = []
+        if(filter):
+            if(sample_set == 'k17'):
+                with open('dataset/k17_filter.pickle', 'rb') as handle:
+                    filt_list = pickle.load(handle)
+            elif(sample_set == 'k33'):
+                with open('dataset/k33_filter.pickle', 'rb') as handle:
+                    filt_list = pickle.load(handle)
+        for name in filenames:
+            if(int(name.split('_')[0][1:3]) in filt_list):
+                filenames.remove(name)
+
+        self.filenames = filenames            
 
     def __len__(self):
         return len(self.filenames)
