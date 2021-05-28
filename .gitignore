@@ -132,5 +132,5 @@ Cut_Leaf_Bas-20210526T140032Z-001.zip
 current_model/alex_sgd_0.01.pth
 current_model_n33/alex_sgd_0.01.pth
 current_model/n17.onnx
-result-20210528-071353/alex_sgd_0.01.pth
-result-20210528-071624/alex_sgd_0.01.pth
+current_model_k17/alex_sgd_0.01.pth
+current_model_k33/alex_sgd_0.01.pth
