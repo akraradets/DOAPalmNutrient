@@ -129,5 +129,4 @@ dmypy.json
 .pyre/
 dataset/*
 Cut_Leaf_Bas-20210526T140032Z-001.zip
-current_model*/*.pth
-current_model*/*.onnx
+old_model/*
