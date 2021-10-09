@@ -1,0 +1,28 @@
+1018
+cuda:0
+Epoch 0/149:LR: 0.0001
+----------
+train Loss: 0.5782 Acc: 0.0000
+Epoch time taken:  17.59730052947998
+val Loss: 0.3721 Acc: 0.0000
+Epoch time taken:  20.947670936584473
+Epoch 1/149:LR: 0.0001
+----------
+train Loss: 0.1311 Acc: 0.0000
+Epoch time taken:  17.48308277130127
+val Loss: 0.1151 Acc: 0.0000
+Epoch time taken:  20.812638521194458
+Epoch 2/149:LR: 0.0001
+----------
+train Loss: 0.0951 Acc: 0.0000
+Epoch time taken:  17.536847352981567
+val Loss: 0.1539 Acc: 0.0000
+Epoch time taken:  20.925610542297363
+Epoch 3/149:LR: 0.0001
+----------
+train Loss: 0.0911 Acc: 0.0000
+Epoch time taken:  17.54501461982727
+val Loss: 0.1201 Acc: 0.0000
+Epoch time taken:  20.8797664642334
+Epoch 4/149:LR: 0.0001
+----------

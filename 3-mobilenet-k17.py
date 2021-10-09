@@ -23,11 +23,11 @@ preprocess = transforms.Compose([
 
 from myDataset import PalmNutriDataset
 ground_truth = 'dataset/gt.csv'
-full_train_dataset = PalmNutriDataset(ground_truth=ground_truth, img_dir='dataset', sample_set='n33', target='n')
+full_train_dataset = PalmNutriDataset(ground_truth=ground_truth, img_dir='dataset', sample_set='k17', target='n')
 print(len(full_train_dataset))
 # test_dataset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=preprocess)
 
-train_dataset, val_dataset = torch.utils.data.random_split(full_train_dataset, [800,218])
+train_dataset, val_dataset = torch.utils.data.random_split(full_train_dataset, [750,150])
 train_dataset.dataset = copy(full_train_dataset)
 train_dataset.dataset.transform = preprocess_augment
 val_dataset.dataset.transform = preprocess
@@ -57,5 +57,5 @@ optimizer = optim.RMSprop(model.parameters(), lr=0.0001, momentum=0.9)
 # optimizer = optim.Adam(params_to_update, lr=0.01)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer,mode='min')
 t = trainer(device,criterion, optimizer,scheduler)
-model = t.train(model, dataloaders, num_epochs=150, weights_name='mobilenet_n33')
+model = t.train(model, dataloaders, num_epochs=150, weights_name='mobilenet_k17')
 # t.test(model,test_dataloader)
