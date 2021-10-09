@@ -31,8 +31,8 @@ train_dataset.dataset = copy(full_train_dataset)
 train_dataset.dataset.transform = preprocess_augment
 val_dataset.dataset.transform = preprocess
 
-BATCH_SIZE=128
-NUM_WORKERS=4
+BATCH_SIZE=64
+NUM_WORKERS=0
 train_dataloader = torch.utils.data.DataLoader(full_train_dataset, batch_size=BATCH_SIZE,shuffle=True , num_workers=NUM_WORKERS)
 val_dataloader   = torch.utils.data.DataLoader(val_dataset  , batch_size=BATCH_SIZE,shuffle=False, num_workers=NUM_WORKERS)
 # test_dataloader  = torch.utils.data.DataLoader(test_dataset , batch_size=BATCH_SIZE,shuffle=False, num_workers=NUM_WORKERS)
