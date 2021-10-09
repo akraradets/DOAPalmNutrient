@@ -32,8 +32,8 @@ train_dataset.dataset = copy(full_train_dataset)
 train_dataset.dataset.transform = preprocess_augment
 val_dataset.dataset.transform = preprocess
 
-BATCH_SIZE=32
-NUM_WORKERS=0
+BATCH_SIZE=128
+NUM_WORKERS=4
 train_dataloader = torch.utils.data.DataLoader(full_train_dataset, batch_size=BATCH_SIZE,shuffle=True , num_workers=NUM_WORKERS)
 val_dataloader   = torch.utils.data.DataLoader(val_dataset  , batch_size=BATCH_SIZE,shuffle=False, num_workers=NUM_WORKERS)
 # test_dataloader  = torch.utils.data.DataLoader(test_dataset , batch_size=BATCH_SIZE,shuffle=False, num_workers=NUM_WORKERS)
@@ -41,7 +41,7 @@ val_dataloader   = torch.utils.data.DataLoader(val_dataset  , batch_size=BATCH_S
 from trainer import trainer
 dataloaders = {'train': train_dataloader,'val':val_dataloader}
 # Set device to GPU or CPU
-device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(device)
 
 model = models.mobilenet_v3_large()
