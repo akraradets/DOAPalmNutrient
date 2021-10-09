@@ -23,10 +23,10 @@ preprocess = transforms.Compose([
 
 from myDataset import PalmNutriDataset
 ground_truth = 'dataset/gt.csv'
-full_train_dataset = PalmNutriDataset(ground_truth=ground_truth, img_dir='dataset', sample_set='n17', target='n')
+full_train_dataset = PalmNutriDataset(ground_truth=ground_truth, img_dir='dataset', sample_set='k33', target='k')
 print(len(full_train_dataset))
 
-train_dataset, val_dataset = torch.utils.data.random_split(full_train_dataset, [800,218])
+train_dataset, val_dataset = torch.utils.data.random_split(full_train_dataset, [750,150])
 train_dataset.dataset = copy(full_train_dataset)
 train_dataset.dataset.transform = preprocess_augment
 val_dataset.dataset.transform = preprocess
