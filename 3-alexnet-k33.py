@@ -26,7 +26,7 @@ ground_truth = 'dataset/gt.csv'
 full_train_dataset = PalmNutriDataset(ground_truth=ground_truth, img_dir='dataset', sample_set='k33', target='k')
 print(len(full_train_dataset))
 
-train_dataset, val_dataset = torch.utils.data.random_split(full_train_dataset, [750,150])
+train_dataset, val_dataset = torch.utils.data.random_split(full_train_dataset, [750,122])
 train_dataset.dataset = copy(full_train_dataset)
 train_dataset.dataset.transform = preprocess_augment
 val_dataset.dataset.transform = preprocess
@@ -53,5 +53,5 @@ optimizer = optim.SGD(model.parameters(), lr=0.01)
 # optimizer = optim.Adam(params_to_update, lr=0.01)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer,mode='min')
 t = trainer(device,criterion, optimizer,scheduler)
-model = t.train(model, dataloaders, num_epochs=150, weights_name='alex_n17')
+model = t.train(model, dataloaders, num_epochs=150, weights_name='alex_k33')
 # t.test(model,test_dataloader)
