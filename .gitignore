@@ -133,3 +133,4 @@ old_model/*
 result*
 alexnet*/*.pth
 resnext*/*.pth
+mobilenet*/*.pth
