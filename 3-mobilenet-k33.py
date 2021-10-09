@@ -23,7 +23,7 @@ preprocess = transforms.Compose([
 
 from myDataset import PalmNutriDataset
 ground_truth = 'dataset/gt.csv'
-full_train_dataset = PalmNutriDataset(ground_truth=ground_truth, img_dir='dataset', sample_set='k33', target='n')
+full_train_dataset = PalmNutriDataset(ground_truth=ground_truth, img_dir='dataset', sample_set='k33', target='k')
 print(len(full_train_dataset))
 # test_dataset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=preprocess)
 
@@ -41,7 +41,7 @@ val_dataloader   = torch.utils.data.DataLoader(val_dataset  , batch_size=BATCH_S
 from trainer import trainer
 dataloaders = {'train': train_dataloader,'val':val_dataloader}
 # Set device to GPU or CPU
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
 print(device)
 
 model = models.mobilenet_v3_large()

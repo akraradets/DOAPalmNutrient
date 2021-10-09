@@ -26,3 +26,125 @@ val Loss: 0.1201 Acc: 0.0000
 Epoch time taken:  20.8797664642334
 Epoch 4/149:LR: 0.0001
 ----------
+train Loss: 0.0785 Acc: 0.0000
+Epoch time taken:  17.523536682128906
+val Loss: 0.1500 Acc: 0.0000
+Epoch time taken:  20.862231254577637
+Epoch 5/149:LR: 0.0001
+----------
+train Loss: 0.0825 Acc: 0.0000
+Epoch time taken:  17.403371572494507
+val Loss: 0.1254 Acc: 0.0000
+Epoch time taken:  20.887333154678345
+Epoch 6/149:LR: 0.0001
+----------
+train Loss: 0.0751 Acc: 0.0000
+Epoch time taken:  17.585938930511475
+val Loss: 0.1162 Acc: 0.0000
+Epoch time taken:  21.24625253677368
+Epoch 7/149:LR: 0.0001
+----------
+train Loss: 0.0702 Acc: 0.0000
+Epoch time taken:  21.3957736492157
+val Loss: 0.1349 Acc: 0.0000
+Epoch time taken:  25.35945987701416
+Epoch 8/149:LR: 0.0001
+----------
+train Loss: 0.0640 Acc: 0.0000
+Epoch time taken:  21.396483659744263
+val Loss: 0.1206 Acc: 0.0000
+Epoch time taken:  25.263427257537842
+Epoch 9/149:LR: 0.0001
+----------
+train Loss: 0.0522 Acc: 0.0000
+Epoch time taken:  19.64167308807373
+val Loss: 0.1202 Acc: 0.0000
+Epoch time taken:  23.41101837158203
+Epoch 10/149:LR: 0.0001
+----------
+train Loss: 0.0506 Acc: 0.0000
+Epoch time taken:  19.761611223220825
+val Loss: 0.1186 Acc: 0.0000
+Epoch time taken:  23.68232822418213
+Epoch 11/149:LR: 0.0001
+----------
+train Loss: 0.0535 Acc: 0.0000
+Epoch time taken:  21.337520599365234
+val Loss: 0.1162 Acc: 0.0000
+Epoch time taken:  25.345455646514893
+Epoch 12/149:LR: 0.0001
+----------
+train Loss: 0.0376 Acc: 0.0000
+Epoch time taken:  19.89076042175293
+val Loss: 0.1154 Acc: 0.0000
+Epoch time taken:  23.802783489227295
+Epoch 13/149:LR: 1e-05
+----------
+train Loss: 0.0345 Acc: 0.0000
+Epoch time taken:  19.837251663208008
+val Loss: 0.1125 Acc: 0.0000
+Epoch time taken:  23.806607961654663
+Epoch 14/149:LR: 1e-05
+----------
+train Loss: 0.0245 Acc: 0.0000
+Epoch time taken:  21.291481018066406
+val Loss: 0.1134 Acc: 0.0000
+Epoch time taken:  25.09535551071167
+Epoch 15/149:LR: 1e-05
+----------
+train Loss: 0.0220 Acc: 0.0000
+Epoch time taken:  19.837116956710815
+val Loss: 0.1068 Acc: 0.0000
+Epoch time taken:  23.57025456428528
+Epoch 16/149:LR: 1e-05
+----------
+train Loss: 0.0210 Acc: 0.0000
+Epoch time taken:  19.649508476257324
+val Loss: 0.1067 Acc: 0.0000
+Epoch time taken:  23.51706051826477
+Epoch 17/149:LR: 1e-05
+----------
+train Loss: 0.0211 Acc: 0.0000
+Epoch time taken:  19.766878128051758
+val Loss: 0.0943 Acc: 0.0000
+Epoch time taken:  23.669990301132202
+Epoch 18/149:LR: 1e-05
+----------
+train Loss: 0.0197 Acc: 0.0000
+Epoch time taken:  18.02431321144104
+val Loss: 0.0763 Acc: 0.0000
+Epoch time taken:  21.465553045272827
+Epoch 19/149:LR: 1e-05
+----------
+train Loss: 0.0192 Acc: 0.0000
+Epoch time taken:  17.675859212875366
+Traceback (most recent call last):
+  File "3-mobilenet-n33.py", line 60, in <module>
+    model = t.train(model, dataloaders, num_epochs=150, weights_name='mobilenet_n33')
+  File "/root/RTML/DOAPalmNutrient/trainer.py", line 70, in train
+    for inputs, labels in dataloaders[phase]:
+  File "/usr/local/lib/python3.8/dist-packages/torch/utils/data/dataloader.py", line 517, in __next__
+    data = self._next_data()
+  File "/usr/local/lib/python3.8/dist-packages/torch/utils/data/dataloader.py", line 557, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/usr/local/lib/python3.8/dist-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/local/lib/python3.8/dist-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/local/lib/python3.8/dist-packages/torch/utils/data/dataset.py", line 330, in __getitem__
+    return self.dataset[self.indices[idx]]
+  File "/root/RTML/DOAPalmNutrient/myDataset.py", line 62, in __getitem__
+    image = self.transform(image)
+  File "/usr/local/lib/python3.8/dist-packages/torchvision/transforms/transforms.py", line 60, in __call__
+    img = t(img)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/torchvision/transforms/transforms.py", line 273, in forward
+    return F.resize(img, self.size, self.interpolation)
+  File "/usr/local/lib/python3.8/dist-packages/torchvision/transforms/functional.py", line 375, in resize
+    return F_pil.resize(img, size=size, interpolation=pil_interpolation)
+  File "/usr/local/lib/python3.8/dist-packages/torchvision/transforms/functional_pil.py", line 228, in resize
+    return img.resize(size[::-1], interpolation)
+  File "/usr/local/lib/python3.8/dist-packages/PIL/Image.py", line 1943, in resize
+    return self._new(self.im.resize(size, resample, box))
+KeyboardInterrupt

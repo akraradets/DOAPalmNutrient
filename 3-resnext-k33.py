@@ -22,7 +22,7 @@ preprocess = transforms.Compose([
 
 from myDataset import PalmNutriDataset
 ground_truth = 'dataset/gt.csv'
-full_train_dataset = PalmNutriDataset(ground_truth=ground_truth, img_dir='dataset', sample_set='k33', target='n')
+full_train_dataset = PalmNutriDataset(ground_truth=ground_truth, img_dir='dataset', sample_set='k33', target='k')
 print(len(full_train_dataset))
 # test_dataset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=preprocess)
 
