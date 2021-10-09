@@ -41,7 +41,7 @@ val_dataloader   = torch.utils.data.DataLoader(val_dataset  , batch_size=BATCH_S
 from trainer import trainer
 dataloaders = {'train': train_dataloader,'val':val_dataloader}
 # Set device to GPU or CPU
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
 print(device)
 
 model = models.mobilenet_v3_large()
