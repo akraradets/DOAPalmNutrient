@@ -130,5 +130,6 @@ dmypy.json
 dataset/*
 Cut_Leaf_Bas-20210526T140032Z-001.zip
 old_model/*
-alexnet*/*.pth
 result*
+alexnet*/*.pth
+resnext*/*.pth
